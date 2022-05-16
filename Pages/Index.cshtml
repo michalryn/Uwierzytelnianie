@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form method="post">
+    <h1 class="display-4">Welcome</h1>
+    <div class="row form-group">
+        <div class="col">
+            <label asp-for="Person.Rok" class="form-label"></label>
+            <input asp-for="Person.Rok" class="form-control" placeholder="Rok" />
+            <span asp-validation-for="Person.Rok" class="text-danger fw-bold"></span>
+        </div>
+        <div class="col">
+            <label asp-for="Person.Imie" class="form-label"></label>
+            <input asp-for="Person.Imie" class="form-control" placeholder="Imię użytkownika" />
+            <span asp-validation-for="Person.Imie" class="text-danger fw-bold"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Person.Nazwisko" class="form-label"></label>
+        <input asp-for="Person.Nazwisko" class="form-control" placeholder="Nazwisko użytkownika" />
+    </div>
+    <button type="submit" class="btn btn-primary">Zatwierdź</button>
+    @if (TempData.ContainsKey("Message"))
+    {
+        <div class="alert alert-primary mt-3 p-3" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    @if (Model.Persons != null)
+    {
+        <div class="list">
+            <ul class="list-group list-group-flush">
+                @foreach (var person in Model.Persons)
+                {
+                    <li class="list-group-item">@person.FullName @person.Rok, @person.Text, @person.Date </li>
+                }
+            </ul>
+        </div>
+    }
+
+</form>
+<style>
+    .form-group {
+        margin-bottom: 1rem
+    }
+
+    .list {
+        font-size: 1.1em
+    }
+</style>
+

@@ -1,0 +1,53 @@
+﻿@page
+@model Uwierzytelnianie.Pages.ZapisaneModel
+@{
+    ViewData["Title"] = "Zapisane";
+}
+
+<h1 class="display-4">Zapisane</h1>
+<p>@Model.name</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Rok)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].User)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Persons) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rok)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
+            </td>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
