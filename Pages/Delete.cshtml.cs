@@ -45,6 +45,10 @@ namespace Uwierzytelnianie.Pages
             {
                 _personService.RemoveEntry(Person);
             }
+            else if(Person != null && Person.User != User?.Identity?.Name)
+            {
+                return Forbid();
+            }
 
             return RedirectToPage("./Zapisane");
         }
